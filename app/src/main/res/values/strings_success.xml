@@ -1,0 +1,4 @@
+<resources>
+    <string name="success_register">Signed up successfully!</string>
+    <string name="success_login">Logged in successfully!</string>
+</resources>
