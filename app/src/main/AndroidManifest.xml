@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoanApp">
         <activity
-            android:name="com.focusstart.loanapp.features.auth.ui.AuthActivity"
+            android:name="com.focusstart.loanapp.core.ui.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:label="@string/app_name">
             <intent-filter>

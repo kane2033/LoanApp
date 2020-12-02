@@ -10,4 +10,6 @@ interface TokenRepository {
     fun getToken(): String?
 
     fun deleteToken()
+
+    fun hasToken(): Boolean
 }

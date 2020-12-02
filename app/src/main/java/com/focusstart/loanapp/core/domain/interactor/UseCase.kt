@@ -13,7 +13,7 @@ abstract class UseCase<out Type, in Params> where Type : Any {
     abstract suspend fun run(params: Params): Either<Failure, Type>
 
     operator fun invoke(params: Params, job: Job, onResult: (Either<Failure, Type>) -> Unit = {}) {
-        val backgroundJob = CoroutineScope(job + Dispatchers.IO).async(Dispatchers.IO) { run(params) }
+        val backgroundJob = CoroutineScope(job + Dispatchers.IO).async { run(params) }
         CoroutineScope(job + Dispatchers.Main).launch { onResult(backgroundJob.await()) }
     }
 

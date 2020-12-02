@@ -6,17 +6,37 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.focusstart.loanapp.features.auth.ui.LoginFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/registerFragment"
         android:name="com.focusstart.loanapp.features.auth.ui.RegisterFragment"
         android:label="register_fragment"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.focusstart.loanapp.features.auth.ui.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_loansListFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/loansListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loansListFragment"
+        android:name="com.focusstart.loanapp.features.loan.ui.LoansListFragment"
+        android:label="fragment_loans_list"
+        tools:layout="@layout/fragment_loans_list">
+        <action
+            android:id="@+id/action_loansListFragment_to_loanDetailsFragment"
+            app:destination="@id/loanDetailsFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/loanDetailsFragment"
+        android:name="com.focusstart.loanapp.features.loan.ui.LoanDetailsFragment"
+        android:label="fragment_loan_details"
+        tools:layout="@layout/fragment_loan_details" />
 </navigation>

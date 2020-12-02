@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.focusstart.loanapp.R
@@ -34,21 +33,25 @@ class LoginFragment: BaseFragment() {
             )
         }
 
+        viewModel.isLoggedIn.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { loggedIn ->
+                if (loggedIn) {
+                    findNavController().navigate(R.id.action_loginFragment_to_loansListFragment)
+                }
+            }
+        })
+
         registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
-
-        viewModel.token.observe(viewLifecycleOwner, {
-            tokenView.text = it
-            // *navigate to LoanActivity*
-        })
 
         viewModel.failure.observe(viewLifecycleOwner, { failure ->
             failure.getContentIfNotHandled()?.let { // Создаем уведомление, только если его не было
                 when (it) {
                     is Failure.RequestFailure -> handleRequestFailure(it.code)
                     is Failure.NetworkConnection -> makeToast(R.string.error_network_connection)
-                    else -> {}
+                    else -> {
+                    }
                 }
             }
 

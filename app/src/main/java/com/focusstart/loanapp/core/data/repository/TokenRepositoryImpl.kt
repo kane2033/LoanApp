@@ -25,10 +25,12 @@ class TokenRepositoryImpl
     override fun getToken(): String? = sharedPreferences.getString(TOKEN_KEY, "")
 
     override fun deleteToken() {
-        with (sharedPreferences.edit()) {
+        with(sharedPreferences.edit()) {
             remove(TOKEN_KEY)
             apply()
         }
     }
+
+    override fun hasToken() = getToken()!!.isNotEmpty()
 
 }
