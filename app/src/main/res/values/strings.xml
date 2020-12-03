@@ -10,8 +10,17 @@
 
     <!-- Плейсхолдер строки полного имени, конкантенирующий имя и фамилию -->
     <string name="full_name">%1$s %2$s</string>
-    <string name="loan_approved">Loan approved</string>
-    <string name="loan_registered">Loan registered</string>
-    <string name="loan_rejected">Loan rejected</string>
+    <string name="loan_approved">Approved</string>
+    <string name="loan_registered">Registered</string>
+    <string name="loan_rejected">Rejected</string>
     <string name="loan_status_image_description">Loan status image</string>
+
+    <!--Loan details-->
+    <string name="loan_date">Loan by %1$s</string>
+    <string name="loan_borrower_info">Info about borrower</string>
+    <string name="loan_info">Info about loan</string>
+    <string name="loan_amount">Amount: %1$d ₽</string>
+    <string name="loan_amount_number">%1$d ₽</string>
+    <string name="loan_period">Period: %1$d d.</string>
+    <string name="loan_percent">Percent: %1$.2f %%</string>
 </resources>

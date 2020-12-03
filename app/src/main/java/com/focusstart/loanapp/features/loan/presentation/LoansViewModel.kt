@@ -11,12 +11,14 @@ import com.focusstart.loanapp.features.loan.domain.entity.Loan
 import com.focusstart.loanapp.features.loan.domain.interactor.GetLoansList
 import kotlinx.coroutines.Job
 
-class LoansListViewModel
+class LoansViewModel
 @ViewModelInject constructor(private val getLoansList: GetLoansList) : ViewModel() {
 
     private val job = Job()
 
-    val loans: MutableLiveData<List<Loan>> = MutableLiveData()
+    val loans = MutableLiveData<List<Loan>>()
+
+    var selectedLoan = MutableLiveData<Loan>()
 
     private val _failure = MutableLiveData<Event<Failure>>()
 
@@ -35,26 +37,16 @@ class LoansListViewModel
         )
     }
 
-/* // Лучше перенести в другой ViewModel
-    fun getLoanById(id: Int) {
-        getLoanById.invoke(
-            params = id,
-            onResult = { it.either(::handleFailure, ::handleLoanById) },
-            job = job
-        )
-    }
-
-    private fun handleLoanById(loan: Loan) {
-        // Открыть подробности о заёме
-    }*/
-
-
     private fun handleLoans(loans: List<Loan>) {
         this.loans.value = loans
     }
 
     private fun handleFailure(failure: Failure) {
         this._failure.value = Event(failure)
+    }
+
+    fun setSelectedLoan(position: Int) {
+        loans.value?.get(position).let { selectedLoan.value = it }
     }
 
     override fun onCleared() {

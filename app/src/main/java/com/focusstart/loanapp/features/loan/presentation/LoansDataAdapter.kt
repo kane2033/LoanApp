@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.features.loan.domain.entity.Loan
-import com.focusstart.loanapp.features.loan.domain.entity.LoanState
 
-class LoansDataAdapter : RecyclerView.Adapter<LoansDataAdapter.ViewHolder>() {
+class LoansDataAdapter(private val clickListener: (position: Int) -> Unit)
+    : RecyclerView.Adapter<LoansDataAdapter.ViewHolder>() {
 
     private var loans: List<Loan> = emptyList()
 
@@ -24,15 +24,13 @@ class LoansDataAdapter : RecyclerView.Adapter<LoansDataAdapter.ViewHolder>() {
     }
 
     fun updateList(newLoans: List<Loan>) {
-        //loans.clear()
-        //loans.addAll(newLoans)
         loans = newLoans
         notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = loans.size
 
-    class ViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
+    inner class ViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             RecyclerView.ViewHolder(inflater.inflate(R.layout.item_loan, parent, false)) {
         private val dateView: TextView = itemView.findViewById(R.id.dateView)
         private val nameView: TextView = itemView.findViewById(R.id.nameView)
@@ -40,33 +38,28 @@ class LoansDataAdapter : RecyclerView.Adapter<LoansDataAdapter.ViewHolder>() {
         private val statusTextView: TextView = itemView.findViewById(R.id.statusTextView)
         private val amountView: TextView = itemView.findViewById(R.id.amountView)
 
+        init {
+            itemView.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    clickListener(adapterPosition)
+                }
+            }
+        }
+
         fun bind(loan: Loan) {
-            dateView.text = loan.date
+            dateView.text = LoanFieldsSetter.setDate(loan.date)
             nameView.text = itemView.context.getString(R.string.full_name,
                     loan.lastName, loan.firstName)
-            statusImageView.setImageResource(setImageStatus(loan.state))
-            statusTextView.setText(setTextStatus(loan.state))
-            amountView.text = loan.amount.toString()
+            statusImageView.setImageResource(LoanFieldsSetter.setImageStatus(loan.state))
+            statusTextView.setText(LoanFieldsSetter.setTextStatus(loan.state))
+            amountView.text = itemView.context.getString(R.string.loan_amount_number, loan.amount)
         }
 
-        /*
-        * Установка изображения и текста в зависимости от
-        * статуса заёма
-        * */
-        private fun setImageStatus(state: LoanState): Int {
-            return when (state) {
-                LoanState.APPROVED -> R.drawable.ic_approved
-                LoanState.REGISTERED -> R.drawable.ic_registered
-                LoanState.REJECTED -> R.drawable.ic_rejected
+/*        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
             }
-        }
-
-        private fun setTextStatus(state: LoanState): Int {
-            return when (state) {
-                LoanState.APPROVED -> R.string.loan_approved
-                LoanState.REGISTERED -> R.string.loan_registered
-                LoanState.REJECTED -> R.string.loan_rejected
-            }
-        }
+        }*/
     }
 }

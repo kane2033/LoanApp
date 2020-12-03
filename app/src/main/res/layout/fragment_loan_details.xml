@@ -12,16 +12,114 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/fragment_margin">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/registerHeaderView"
-            style="@style/register_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            android:text="Loan details will be here"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/statusImageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/loan_status_image_description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_approved" />
+
+        <TextView
+            android:id="@+id/dateView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/statusImageView"
+            app:layout_constraintTop_toTopOf="@+id/statusImageView"
+            tools:text="Заём от 25.05.2020" />
+
+        <TextView
+            android:id="@+id/statusTextView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/statusImageView"
+            app:layout_constraintStart_toEndOf="@+id/statusImageView"
+            app:layout_constraintTop_toBottomOf="@+id/dateView"
+            tools:text="Одобрено" />
+
+        <TextView
+            android:id="@+id/borrowerInfoView"
+            android:textSize="18sp"
+            android:text="@string/loan_borrower_info"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statusImageView"
+            tools:text="Информация о заёмщике" />
+
+        <TextView
+            android:id="@+id/nameView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/borrowerInfoView"
+            tools:text="Акакий Акакиевич" />
+
+        <TextView
+            android:id="@+id/phoneView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameView"
+            tools:text="+88005553535" />
+
+        <TextView
+            android:id="@+id/borrowInfoView"
+            android:textSize="18sp"
+            android:text="@string/loan_info"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneView"
+            tools:text="Информация о займе" />
+
+        <TextView
+            android:id="@+id/amountView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/borrowInfoView"
+            tools:text="Сумма займа: 5000р." />
+
+        <TextView
+            android:id="@+id/periodView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amountView"
+            tools:text="Срок займа: 30 д." />
+
+        <TextView
+            android:id="@+id/percentView"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/periodView"
+            tools:text="Процент займа: 4.4 %" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

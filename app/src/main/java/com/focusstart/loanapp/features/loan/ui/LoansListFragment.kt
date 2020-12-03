@@ -4,18 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.loan.presentation.LoansDataAdapter
-import com.focusstart.loanapp.features.loan.presentation.LoansListViewModel
+import com.focusstart.loanapp.features.loan.presentation.LoansViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_loans_list.*
 
 @AndroidEntryPoint
 class LoansListFragment : BaseFragment() {
 
-    private val viewModel: LoansListViewModel by viewModels()
+    private val viewModel: LoansViewModel by activityViewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -25,13 +26,13 @@ class LoansListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val loansAdapter = LoansDataAdapter()
-        // Инициализация RecyclerView
-        loansRecyclerView.apply {
-            //layoutManager = LinearLayoutManager(requireActivity())
-            adapter = loansAdapter
-            //clicksListener = ...
-        }
+        // Инициализация RecyclerView с адаптером
+        val loansAdapter = LoansDataAdapter(clickListener = { position ->
+            // Выбранный заём сохраняем в общей viewmodel для master-detail
+            viewModel.setSelectedLoan(position)
+            findNavController().navigate(R.id.action_loansListFragment_to_loanDetailsFragment)
+        })
+        loansRecyclerView.adapter = loansAdapter
 
         listRefreshLayout.setOnRefreshListener {
             viewModel.getLoansList()
