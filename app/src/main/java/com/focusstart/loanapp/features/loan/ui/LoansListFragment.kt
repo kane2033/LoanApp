@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.loan.presentation.LoansDataAdapter
@@ -16,7 +16,9 @@ import kotlinx.android.synthetic.main.fragment_loans_list.*
 @AndroidEntryPoint
 class LoansListFragment : BaseFragment() {
 
-    private val viewModel: LoansViewModel by activityViewModels()
+    private val viewModel: LoansViewModel by navGraphViewModels(R.id.loanMasterDetailGraph) {
+        defaultViewModelProviderFactory
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,14 @@ class LoansListFragment : BaseFragment() {
 
         viewModel.loans.observe(viewLifecycleOwner, {
             loansAdapter.updateList(it)
+        })
+
+        createLoanButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loansListFragment_to_loanCreationGraph)
+        }
+
+        viewModel.failure.observe(viewLifecycleOwner, {
+            makeToast(R.string.error_base)
         })
     }
 

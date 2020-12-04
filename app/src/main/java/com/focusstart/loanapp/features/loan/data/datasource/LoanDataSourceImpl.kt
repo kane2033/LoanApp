@@ -6,6 +6,7 @@ import com.focusstart.loanapp.core.domain.functional.Either
 import com.focusstart.loanapp.features.loan.data.network.LoanApi
 import com.focusstart.loanapp.features.loan.domain.entity.Loan
 import com.focusstart.loanapp.features.loan.domain.entity.LoanConditions
+import com.focusstart.loanapp.features.loan.domain.entity.LoanCreated
 import javax.inject.Inject
 
 class LoanDataSourceImpl
@@ -14,8 +15,8 @@ class LoanDataSourceImpl
     override suspend fun getLoanConditions(): Either<Failure, LoanConditions> =
             SafeApiCall.safeApiResult { loanApi.getLoanConditions() }
 
-    override suspend fun createLoan(conditions: LoanConditions): Either<Failure, Loan> =
-            SafeApiCall.safeApiResult { loanApi.createLoan(conditions) }
+    override suspend fun createLoan(loan: LoanCreated): Either<Failure, Loan> =
+            SafeApiCall.safeApiResult { loanApi.createLoan(loan) }
 
     override suspend fun getLoanById(id: Int): Either<Failure, Loan> =
             SafeApiCall.safeApiResult { loanApi.getLoanById(id) }

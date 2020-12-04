@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.domain.exception.Failure
@@ -29,7 +28,7 @@ class RegisterFragment: BaseFragment() {
         registerButton.setOnClickListener {
             viewModel.register(
                     nameInputView.editText?.text.toString(),
-                    nameInputView.editText?.text.toString()
+                    passwordInputView.editText?.text.toString()
             )
         }
 

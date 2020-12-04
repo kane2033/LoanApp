@@ -7,13 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".features.loan.ui.LoansListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/loansRecyclerView"
-        android:name=".features.loan.ui.LoansListFragment"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:context=".features.loan.ui.LoansListFragment"
-        tools:listitem="@layout/item_loan" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/loansRecyclerView"
+            android:name=".features.loan.ui.LoansListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:context=".features.loan.ui.LoansListFragment"
+            tools:listitem="@layout/item_loan" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createLoanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_add"
+            android:contentDescription="@string/loan_create_amount_description"
+            android:layout_margin="16dp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

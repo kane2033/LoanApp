@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
 @AndroidEntryPoint
-class LoginFragment: BaseFragment() {
+class LoginFragment : BaseFragment() {
 
     private val viewModel: LoginViewModel by viewModels()
 
@@ -29,14 +29,14 @@ class LoginFragment: BaseFragment() {
         loginButton.setOnClickListener {
             viewModel.login(
                     nameInputView.editText?.text.toString(),
-                    nameInputView.editText?.text.toString()
+                    passwordInputView.editText?.text.toString()
             )
         }
 
         viewModel.isLoggedIn.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let { loggedIn ->
                 if (loggedIn) {
-                    findNavController().navigate(R.id.action_loginFragment_to_loansListFragment)
+                    findNavController().navigate(R.id.action_loginFragment_to_loanMasterDetailGraph)
                 }
             }
         })

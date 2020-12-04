@@ -19,8 +19,37 @@
     <string name="loan_date">Loan by %1$s</string>
     <string name="loan_borrower_info">Info about borrower</string>
     <string name="loan_info">Info about loan</string>
+    <string name="loan_how_to_get">How to get your loan</string>
+    <string name="loan_instructions">Please wait for the call for further instructions.</string>
     <string name="loan_amount">Amount: %1$d ₽</string>
     <string name="loan_amount_number">%1$d ₽</string>
     <string name="loan_period">Period: %1$d d.</string>
-    <string name="loan_percent">Percent: %1$.2f %%</string>
+    <string name="plus">+</string>
+    <string name="equals">=</string>
+    <string name="loan_percent">Interest rate: %1$.2f %%</string>
+
+    <string name="loan_create_header">Create loan</string>
+    <string name="loan_create_amount_header">Loan amount</string>
+    <string name="loan_create_amount_description">Choose amount</string>
+    <string name="loan_create_amount_min">0 ₽</string>
+    <string name="loan_create_amount_max">%1$d ₽</string>
+    <string name="loan_create_period">Loan period: %1$d d.</string>
+    <string name="loan_create_percent">Interest rate: %1$.2f %%</string>
+    <string name="loan_create_total">Total:</string>
+    <string name="loan_create_amount_number">%1$d ₽</string>
+    <string name="loan_create_amount_empty">0 ₽</string>
+    <string name="loan_create_percent_number">%1$.2f ₽</string>
+    <string name="loan_create_total_number">%1$.2f ₽</string>
+    <string name="loan_create_amount_sub">Loan amount</string>
+    <string name="loan_create_percent_sum_sub">Rate</string>
+    <string name="loan_create_total_sub">Total</string>
+    <string name="loan_create_credentials_header">Please input your credentials:</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_phone">Phone</string>
+    <string name="button_loan_create">Create loan</string>
+
+    <string name="loan_created">Loan created successfully!</string>
+    <string name="loan_created_got_it">Got it</string>
+    <string name="loan_created_instructions">Please wait for your application to be approved. We will contact you shortly.</string>
 </resources>

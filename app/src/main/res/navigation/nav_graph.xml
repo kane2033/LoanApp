@@ -3,40 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/authGraph">
 
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.focusstart.loanapp.features.auth.ui.RegisterFragment"
-        android:label="register_fragment"
-        tools:layout="@layout/fragment_register" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.focusstart.loanapp.features.auth.ui.LoginFragment"
-        android:label="login_fragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_loansListFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/loansListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loansListFragment"
-        android:name="com.focusstart.loanapp.features.loan.ui.LoansListFragment"
-        android:label="fragment_loans_list"
-        tools:layout="@layout/fragment_loans_list">
-        <action
-            android:id="@+id/action_loansListFragment_to_loanDetailsFragment"
-            app:destination="@id/loanDetailsFragment" />
+    <navigation
+        android:id="@+id/loanCreationGraph"
+        app:startDestination="@id/loanCreationFragment">
+        <fragment
+            android:id="@+id/loanCreatedFragment"
+            android:name="com.focusstart.loanapp.features.loan.ui.LoanCreatedFragment"
+            android:label="fragment_loan_created"
+            tools:layout="@layout/fragment_loan_created">
+            <action
+                android:id="@+id/action_loanCreatedFragment_to_loanMasterDetailGraph"
+                app:destination="@id/loanMasterDetailGraph"
+                app:popUpTo="@id/loanMasterDetailGraph"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/loanCreationFragment"
+            android:name="com.focusstart.loanapp.features.loan.ui.LoanCreationFragment"
+            android:label="fragment_loan_creation"
+            tools:layout="@layout/fragment_loan_creation">
+            <action
+                android:id="@+id/action_loanCreationFragment_to_loanCreatedFragment"
+                app:destination="@id/loanCreatedFragment"
+                app:popUpTo="@id/loanCreationFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/loanMasterDetailGraph"
+        app:startDestination="@id/loansListFragment">
+        <fragment
+            android:id="@+id/loanDetailsFragment"
+            android:name="com.focusstart.loanapp.features.loan.ui.LoanDetailsFragment"
+            android:label="fragment_loan_details"
+            tools:layout="@layout/fragment_loan_details" />
+        <fragment
+            android:id="@+id/loansListFragment"
+            android:name="com.focusstart.loanapp.features.loan.ui.LoansListFragment"
+            android:label="fragment_loans_list"
+            tools:layout="@layout/fragment_loans_list">
+            <action
+                android:id="@+id/action_loansListFragment_to_loanDetailsFragment"
+                app:destination="@id/loanDetailsFragment" />
+            <action
+                android:id="@+id/action_loansListFragment_to_loanCreationGraph"
+                app:destination="@id/loanCreationGraph" />
 
-    </fragment>
-    <fragment
-        android:id="@+id/loanDetailsFragment"
-        android:name="com.focusstart.loanapp.features.loan.ui.LoanDetailsFragment"
-        android:label="fragment_loan_details"
-        tools:layout="@layout/fragment_loan_details" />
+        </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/authGraph"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/registerFragment"
+            android:name="com.focusstart.loanapp.features.auth.ui.RegisterFragment"
+            android:label="register_fragment"
+            tools:layout="@layout/fragment_register" />
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.focusstart.loanapp.features.auth.ui.LoginFragment"
+            android:label="login_fragment"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment_to_registerFragment"
+                app:destination="@id/registerFragment" />
+            <action
+                android:id="@+id/action_loginFragment_to_loanMasterDetailGraph"
+                app:destination="@id/loanMasterDetailGraph"
+                app:popUpTo="@id/loginFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
 </navigation>

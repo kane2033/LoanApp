@@ -1,4 +1,5 @@
 <resources>
+    <string name="error_base">An error has occurred</string>
     <string name="error_network_connection">There is a problem with network connection on your device</string>
     <string name="error_request">An error has occurred while trying to do a network request</string>
 

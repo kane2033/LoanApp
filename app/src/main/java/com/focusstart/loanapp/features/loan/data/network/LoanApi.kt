@@ -2,6 +2,7 @@ package com.focusstart.loanapp.features.loan.data.network
 
 import com.focusstart.loanapp.features.loan.domain.entity.Loan
 import com.focusstart.loanapp.features.loan.domain.entity.LoanConditions
+import com.focusstart.loanapp.features.loan.domain.entity.LoanCreated
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ interface LoanApi {
     suspend fun getLoanConditions(): Response<LoanConditions>
 
     @POST("loans")
-    suspend fun createLoan(@Body conditions: LoanConditions): Response<Loan>
+    suspend fun createLoan(@Body loan: LoanCreated): Response<Loan>
 
     @GET("loans/{id}")
     suspend fun getLoanById(@Path("id") id: Int): Response<Loan>

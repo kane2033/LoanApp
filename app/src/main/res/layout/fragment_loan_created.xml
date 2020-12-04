@@ -5,12 +5,23 @@
     android:id="@+id/registerFragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.loan.ui.LoanDetailsFragment">
+    tools:context=".features.loan.ui.LoanCreatedFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/fragment_margin">
+
+        <TextView
+            android:id="@+id/loanCreatedHeaderView"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/loan_created"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Заём успешно оформлен!" />
 
         <ImageView
             android:id="@+id/statusImageView"
@@ -19,7 +30,7 @@
             android:layout_margin="8dp"
             android:contentDescription="@string/loan_status_image_description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/borrowInfoView"
+            app:layout_constraintTop_toBottomOf="@+id/loanCreatedHeaderView"
             tools:src="@drawable/ic_approved" />
 
         <TextView
@@ -75,17 +86,6 @@
             tools:text="+88005553535" />
 
         <TextView
-            android:id="@+id/borrowInfoView"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/loan_info"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Информация о займе" />
-
-        <TextView
             android:id="@+id/amountView"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="wrap_content"
@@ -135,7 +135,19 @@
             android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideInfoView"
-            tools:text="Инструкции получения займа" />
+            tools:text="Инструкция получения займа сразу после его регистрации." />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fragment_margin"
+            android:text="@string/loan_created_got_it"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instructionsView"
+            tools:text="Все ясно" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
