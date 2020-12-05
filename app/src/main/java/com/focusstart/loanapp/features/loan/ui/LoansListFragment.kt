@@ -13,6 +13,7 @@ import com.focusstart.loanapp.features.loan.presentation.LoansViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_loans_list.*
 
+
 @AndroidEntryPoint
 class LoansListFragment : BaseFragment() {
 
@@ -28,6 +29,26 @@ class LoansListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        toolBar.inflateMenu(R.menu.toolbar)
+        toolBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_update -> {
+                    listRefreshLayout.isRefreshing = true
+                    viewModel.getLoansList()
+                    true
+                }
+
+                R.id.action_settings -> {
+                    findNavController().navigate(R.id.action_loansListFragment_to_settingsGraph)
+                    true
+                }
+
+                else -> {
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
+
         // Инициализация RecyclerView с адаптером
         val loansAdapter = LoansDataAdapter(clickListener = { position ->
             // Выбранный заём сохраняем в общей viewmodel для master-detail
@@ -38,11 +59,12 @@ class LoansListFragment : BaseFragment() {
 
         listRefreshLayout.setOnRefreshListener {
             viewModel.getLoansList()
-            listRefreshLayout.isRefreshing = false
+            //listRefreshLayout.isRefreshing = false
         }
 
         viewModel.loans.observe(viewLifecycleOwner, {
             loansAdapter.updateList(it)
+            listRefreshLayout.isRefreshing = false
         })
 
         createLoanButton.setOnClickListener {
@@ -53,5 +75,28 @@ class LoansListFragment : BaseFragment() {
             makeToast(R.string.error_base)
         })
     }
+
+/*    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        requireActivity().menuInflater.inflate(R.menu.toolbar, menu)
+    }
+
+    // handle button activities
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_update -> {
+            listRefreshLayout.isRefreshing = true
+            viewModel.getLoansList()
+            true
+        }
+
+        R.id.action_settings -> {
+            findNavController().navigate(R.id.action_loansListFragment_to_settingsGraph)
+            true
+        }
+
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }*/
 
 }

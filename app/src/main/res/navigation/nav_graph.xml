@@ -52,6 +52,9 @@
                 app:destination="@id/loanCreationGraph" />
 
         </fragment>
+        <action
+            android:id="@+id/action_loansListFragment_to_settingsGraph"
+            app:destination="@id/settingsGraph" />
     </navigation>
     <navigation
         android:id="@+id/authGraph"
@@ -75,5 +78,19 @@
                 app:popUpTo="@id/loginFragment"
                 app:popUpToInclusive="true" />
         </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/settingsGraph"
+        app:startDestination="@id/settingsFragment">
+        <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.focusstart.loanapp.features.settings.ui.SettingsFragment"
+            android:label="fragment_settings"
+            tools:layout="@layout/fragment_settings" />
+        <action
+            android:id="@+id/action_settingsFragment_to_authGraph"
+            app:destination="@id/authGraph"
+            app:popUpTo="@id/authGraph"
+            app:popUpToInclusive="true" />
     </navigation>
 </navigation>

@@ -9,7 +9,7 @@
     <string name="button_register">Sign up</string>
 
     <!-- Плейсхолдер строки полного имени, конкантенирующий имя и фамилию -->
-    <string name="full_name">%1$s %2$s</string>
+    <string name="full_name" translatable="false">%1$s %2$s</string>
     <string name="loan_approved">Approved</string>
     <string name="loan_registered">Registered</string>
     <string name="loan_rejected">Rejected</string>
@@ -22,24 +22,24 @@
     <string name="loan_how_to_get">How to get your loan</string>
     <string name="loan_instructions">Please wait for the call for further instructions.</string>
     <string name="loan_amount">Amount: %1$d ₽</string>
-    <string name="loan_amount_number">%1$d ₽</string>
+    <string name="loan_amount_number" translatable="false">%1$d ₽</string>
     <string name="loan_period">Period: %1$d d.</string>
-    <string name="plus">+</string>
-    <string name="equals">=</string>
+    <string name="plus" translatable="false">+</string>
+    <string name="equals" translatable="false">=</string>
     <string name="loan_percent">Interest rate: %1$.2f %%</string>
 
     <string name="loan_create_header">Create loan</string>
     <string name="loan_create_amount_header">Loan amount</string>
     <string name="loan_create_amount_description">Choose amount</string>
-    <string name="loan_create_amount_min">0 ₽</string>
+    <string name="loan_create_amount_min" translatable="false">0 ₽</string>
     <string name="loan_create_amount_max">%1$d ₽</string>
     <string name="loan_create_period">Loan period: %1$d d.</string>
     <string name="loan_create_percent">Interest rate: %1$.2f %%</string>
     <string name="loan_create_total">Total:</string>
-    <string name="loan_create_amount_number">%1$d ₽</string>
-    <string name="loan_create_amount_empty">0 ₽</string>
-    <string name="loan_create_percent_number">%1$.2f ₽</string>
-    <string name="loan_create_total_number">%1$.2f ₽</string>
+    <string name="loan_create_amount_number" translatable="false">%1$d ₽</string>
+    <string name="loan_create_amount_empty" translatable="false">0 ₽</string>
+    <string name="loan_create_percent_number" translatable="false">%1$.2f ₽</string>
+    <string name="loan_create_total_number" translatable="false">%1$.2f ₽</string>
     <string name="loan_create_amount_sub">Loan amount</string>
     <string name="loan_create_percent_sum_sub">Rate</string>
     <string name="loan_create_total_sub">Total</string>
@@ -52,4 +52,22 @@
     <string name="loan_created">Loan created successfully!</string>
     <string name="loan_created_got_it">Got it</string>
     <string name="loan_created_instructions">Please wait for your application to be approved. We will contact you shortly.</string>
+
+    <string name="toolbar_settings">Settings</string>
+    <string name="toolbar_update">Update</string>
+
+    <string name="settings_header">Settings</string>
+    <string name="settings_language_button">Change language</string>
+    <string name="settings_logout_button">Log out</string>
+
+    <!-- Map языков:
+    languages_keys[i] == languages[i]-->
+    <string-array name="languages_keys">
+        <item>en</item>
+        <item>ru</item>
+    </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Русский</item>
+    </string-array>
 </resources>
