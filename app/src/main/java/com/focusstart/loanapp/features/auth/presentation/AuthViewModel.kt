@@ -4,34 +4,32 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.focusstart.loanapp.core.domain.exception.Failure
 import com.focusstart.loanapp.core.domain.interactor.None
+import com.focusstart.loanapp.core.presentation.BaseViewModel
 import com.focusstart.loanapp.core.presentation.Event
 import com.focusstart.loanapp.features.auth.domain.entity.User
 import com.focusstart.loanapp.features.auth.domain.interactor.Login
+import com.focusstart.loanapp.features.auth.domain.interactor.Register
 import com.focusstart.loanapp.features.auth.domain.interactor.UserLoggedIn
-import kotlinx.coroutines.Job
 
 /**
  * [ViewModel], оперирующая UseCase-ом [Login]
  * и хранящая [failure] для обработки ошибок со стороны интерфейса (фрагмента)
  * */
-class LoginViewModel
+class AuthViewModel
 @ViewModelInject constructor(private val login: Login,
-                             private val userLoggedIn: UserLoggedIn) : ViewModel() {
-
-    // Экземпляр работы, использующийся
-    private val job = Job()
+                             private val userLoggedIn: UserLoggedIn,
+                             private val register: Register) : BaseViewModel() {
 
     private var _isLoggedIn = MutableLiveData<Event<Boolean>>()
 
     val isLoggedIn: LiveData<Event<Boolean>>
         get() = _isLoggedIn
 
-    private var _failure = MutableLiveData<Event<Failure>>()
+    private var _isRegistered = MutableLiveData<Event<Boolean>>()
 
-    val failure: LiveData<Event<Failure>>
-        get() = _failure
+    val isRegistered: LiveData<Event<Boolean>>
+        get() = _isRegistered
 
     init {
         // Проверка на пройденность авторизации
@@ -63,12 +61,15 @@ class LoginViewModel
         this._isLoggedIn.value = Event(true)
     }
 
-    private fun handleFailure(failure: Failure) {
-        this._failure.value = Event(failure)
+    fun register(name: String, password: String) {
+        register.invoke(
+                params = User(name, password),
+                onResult = { it.either(::handleFailure, ::handleRegister) },
+                job = job
+        )
     }
 
-    override fun onCleared() {
-        job.cancel()
-        super.onCleared()
+    private fun handleRegister(nothing: Unit) {
+        _isRegistered.value = Event(true)
     }
 }

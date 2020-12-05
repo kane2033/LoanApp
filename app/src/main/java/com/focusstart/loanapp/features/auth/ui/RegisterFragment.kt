@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.domain.exception.Failure
 import com.focusstart.loanapp.core.ui.BaseFragment
-import com.focusstart.loanapp.features.auth.presentation.RegisterViewModel
+import com.focusstart.loanapp.features.auth.presentation.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_register.*
 
 @AndroidEntryPoint
 class RegisterFragment: BaseFragment() {
 
-    private val viewModel: RegisterViewModel by viewModels()
+    private val viewModel: AuthViewModel by navGraphViewModels(R.id.authGraph) {
+        defaultViewModelProviderFactory
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +35,22 @@ class RegisterFragment: BaseFragment() {
             )
         }
 
+        viewModel.isRegistered.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { isRegistered ->
+                if (isRegistered) {
+                    makeToast(R.string.success_register)
+                    findNavController().navigateUp()
+                }
+            }
+        })
+
         viewModel.failure.observe(viewLifecycleOwner, { failure ->
-            when (failure) {
-                is Failure.RequestFailure -> makeToast(R.string.error_request)
-                is Failure.NetworkConnection -> makeToast(R.string.error_network_connection)
-                else -> makeToast(R.string.success_login)
+            failure.getContentIfNotHandled()?.let {
+                when (it) {
+                    is Failure.RequestFailure -> makeToast(R.string.error_request)
+                    is Failure.NetworkConnection -> makeToast(R.string.error_network_connection)
+                    else -> makeToast(R.string.success_login)
+                }
             }
         })
     }

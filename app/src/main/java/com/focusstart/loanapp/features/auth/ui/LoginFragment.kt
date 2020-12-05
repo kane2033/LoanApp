@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.domain.exception.Failure
 import com.focusstart.loanapp.core.ui.BaseFragment
-import com.focusstart.loanapp.features.auth.presentation.LoginViewModel
+import com.focusstart.loanapp.features.auth.presentation.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: AuthViewModel by navGraphViewModels(R.id.authGraph) {
+        defaultViewModelProviderFactory
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
