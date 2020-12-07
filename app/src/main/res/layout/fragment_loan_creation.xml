@@ -18,40 +18,26 @@
             android:text="@string/loan_create_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Оформление займа" />
-
-        <TextView
-            android:id="@+id/amountHeaderView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/createLoanHeader"
-            tools:text="Сумма займа вот тут надо иметь возможность с помощью клавы изменить сумму" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/minAmountView"
             style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount_min"
+            android:text="@string/loan_create_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountHeaderView"
-            tools:text="0 ₽" />
+            app:layout_constraintTop_toBottomOf="@+id/createLoanHeader"
+            tools:text="1 ₽" />
 
         <SeekBar
             android:id="@+id/setAmountBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="295dp"
-            android:layout_marginBottom="4dp"
+            android:layout_margin="@dimen/fragment_margin"
             android:contentDescription="@string/loan_create_amount_description"
             app:layout_constraintBottom_toBottomOf="@+id/minAmountView"
             app:layout_constraintEnd_toStartOf="@+id/maxAmountView"
@@ -62,10 +48,10 @@
         <TextView
             android:id="@+id/maxAmountView"
             style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount_max"
+            android:text="@string/loan_create_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintBottom_toBottomOf="@+id/minAmountView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/minAmountView"
@@ -77,7 +63,7 @@
             android:text="@string/loan_create_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/minAmountView"
             tools:text="Срок займа: 30 д." />
@@ -89,7 +75,7 @@
             android:text="@string/loan_create_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/periodView"
             tools:text="Процентная ставка: 7.7 %" />
@@ -100,10 +86,9 @@
             android:text="@string/loan_create_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/percentView"
-            tools:text="К возврату:" />
+            app:layout_constraintTop_toBottomOf="@+id/percentView" />
 
         <TextView
             android:id="@+id/amountView"
@@ -111,7 +96,9 @@
             android:text="@string/loan_create_amount_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginTop="@dimen/fragment_margin"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
             app:layout_constraintEnd_toStartOf="@+id/plusView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -126,7 +113,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/amountView"
             app:layout_constraintEnd_toStartOf="@+id/percentSumView"
             app:layout_constraintHorizontal_bias="0.5"
@@ -187,8 +173,7 @@
             android:layout_margin="8dp"
             app:layout_constraintEnd_toStartOf="@+id/plusView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountView"
-            tools:text="Сумма займа" />
+            app:layout_constraintTop_toBottomOf="@+id/amountView" />
 
         <TextView
             android:id="@+id/percentSumSubView"
@@ -197,11 +182,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:layout_marginEnd="17dp"
             app:layout_constraintEnd_toStartOf="@+id/equalsView"
             app:layout_constraintStart_toEndOf="@+id/plusView"
-            app:layout_constraintTop_toBottomOf="@+id/percentSumView"
-            tools:text="Процент" />
+            app:layout_constraintTop_toBottomOf="@+id/percentSumView" />
 
         <TextView
             android:id="@+id/amountResultSubView"
@@ -212,8 +195,7 @@
             android:layout_margin="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/equalsView"
-            app:layout_constraintTop_toBottomOf="@+id/amountResultView"
-            tools:text="К возврату" />
+            app:layout_constraintTop_toBottomOf="@+id/amountResultView" />
 
         <TextView
             android:id="@+id/credentialsHeaderView"
@@ -221,10 +203,9 @@
             android:text="@string/loan_create_credentials_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/fragment_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountSubView"
-            tools:text="Введите информацию о себе:" />
+            app:layout_constraintTop_toBottomOf="@+id/amountSubView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/lastNameInputView"

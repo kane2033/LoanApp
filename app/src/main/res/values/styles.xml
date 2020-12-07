@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="login_header" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">56sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/image_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/image_margin_bottom</item>
+        <item name="android:layout_marginHorizontal">@dimen/fragment_margin</item>
+    </style>
+
     <style name="register_header">
         <item name="android:textSize">32sp</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>

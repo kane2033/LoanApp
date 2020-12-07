@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">LoanApp</string>
     <!-- Строки для логина -->
+    <string name="login_header" translatable="false">Loan app</string>
     <string name="hint_name">Name</string>
     <string name="hint_password">Password</string>
     <string name="button_login">Login</string>
@@ -31,8 +32,7 @@
     <string name="loan_create_header">Create loan</string>
     <string name="loan_create_amount_header">Loan amount</string>
     <string name="loan_create_amount_description">Choose amount</string>
-    <string name="loan_create_amount_min" translatable="false">0 ₽</string>
-    <string name="loan_create_amount_max">%1$d ₽</string>
+    <string name="loan_create_amount" translatable="false">%1$d ₽</string>
     <string name="loan_create_period">Loan period: %1$d d.</string>
     <string name="loan_create_percent">Interest rate: %1$.2f %%</string>
     <string name="loan_create_total">Total:</string>
