@@ -1,30 +1,29 @@
 package com.focusstart.loanapp.features.settings.presentation
 
+import android.content.Context
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.focusstart.loanapp.core.domain.interactor.None
 import com.focusstart.loanapp.core.presentation.BaseViewModel
-import com.focusstart.loanapp.core.presentation.Event
 import com.focusstart.loanapp.features.settings.domain.interactor.Logout
+import com.focusstart.loanapp.features.settings.domain.interactor.SetLanguage
 
 class SettingsViewModel
-@ViewModelInject constructor(private val logout: Logout) : BaseViewModel() {
-
-    private var _isLoggedOut = MutableLiveData<Event<Boolean>>()
-
-    val isLoggedOut: LiveData<Event<Boolean>>
-        get() = _isLoggedOut
+@ViewModelInject constructor(private val logout: Logout, private val setLanguage: SetLanguage) : BaseViewModel() {
 
     fun logout() {
         logout.invoke(
                 params = None(),
-                onResult = { it.either(::handleFailure, ::handleLogout) },
+                onResult = { it.either(::handleFailure) {} },
                 job = job
         )
     }
 
-    private fun handleLogout(nothing: Unit) {
-        _isLoggedOut.value = Event(true)
+    fun setLanguage(context: Context, languageCode: String) {
+        setLanguage.invoke(
+                params = Pair(context, languageCode),
+                onResult = { it.either(::handleFailure) { } },
+                job = job
+        )
     }
+
 }

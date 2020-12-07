@@ -25,20 +25,16 @@ class SettingsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val languages = resources.getStringArray(R.array.languages_keys)
+
         changeLanguageButton.setOnClickListener {
-            //findNavController().navigate(R.id.action_loanCreatedFragment_to_loanMasterDetailGraph)
+            viewModel.setLanguage(requireContext(), languages[languageSpinner.selectedItemPosition])
+            requireActivity().recreate()
         }
 
         logoutButton.setOnClickListener {
             viewModel.logout()
+            findNavController().navigate(R.id.action_settingsFragment_to_authGraph)
         }
-
-        viewModel.isLoggedOut.observe(viewLifecycleOwner, {
-            it.getContentIfNotHandled()?.let { loggedOut ->
-                if (loggedOut) {
-                    findNavController().navigate(R.id.action_settingsFragment_to_authGraph)
-                }
-            }
-        })
     }
 }
