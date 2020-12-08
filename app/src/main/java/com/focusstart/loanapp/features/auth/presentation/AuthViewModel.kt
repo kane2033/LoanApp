@@ -69,7 +69,7 @@ class AuthViewModel
         )
     }
 
-    private fun handleRegister(nothing: Unit) {
+    private fun handleRegister(nothing: Any) {
         _isRegistered.value = Event(true)
     }
 }

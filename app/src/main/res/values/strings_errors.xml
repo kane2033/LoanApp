@@ -4,4 +4,5 @@
     <string name="error_request">An error has occurred while trying to do a network request</string>
 
     <string name="error_user_not_found">User not found</string>
+    <string name="error_user_already_exists">User already exists</string>
 </resources>

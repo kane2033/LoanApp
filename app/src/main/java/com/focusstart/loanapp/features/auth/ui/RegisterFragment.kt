@@ -43,7 +43,8 @@ class RegisterFragment: BaseFragment() {
             }
         })
 
-        // Пока что нет специфичных ошибок для фрагмента
-        handleFailure({}, {})
+        handleFailure({}, { code ->
+            if (code == 400) makeToast(R.string.error_user_already_exists)
+        })
     }
 }

@@ -28,9 +28,10 @@ class LoginFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loginButton.setOnClickListener {
+            hideKeyboard()
             viewModel.login(
-                    nameInputView.editText?.text.toString(),
-                    passwordInputView.editText?.text.toString()
+                nameInputView.editText?.text.toString(),
+                passwordInputView.editText?.text.toString()
             )
         }
 
