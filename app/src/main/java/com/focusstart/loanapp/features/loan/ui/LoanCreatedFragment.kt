@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_loan_created.*
 @AndroidEntryPoint
 class LoanCreatedFragment : BaseFragment() {
 
-    private val viewModel: LoanCreateViewModel by navGraphViewModels(R.id.loanCreationGraph) {
+    override val viewModel: LoanCreateViewModel by navGraphViewModels(R.id.loanCreationGraph) {
         defaultViewModelProviderFactory
     }
 
@@ -43,5 +43,8 @@ class LoanCreatedFragment : BaseFragment() {
         okButton.setOnClickListener {
             findNavController().navigate(R.id.action_loanCreatedFragment_to_loanMasterDetailGraph)
         }
+
+        // Пока что нет специфичных ошибок для фрагмента
+        handleFailure({}, {})
     }
 }

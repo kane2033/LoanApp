@@ -10,18 +10,21 @@ import com.focusstart.loanapp.features.loan.domain.entity.LoanCreated
 import javax.inject.Inject
 
 class LoanDataSourceImpl
-@Inject constructor(private val loanApi: LoanApi) : LoanDataSource {
+@Inject constructor(
+    private val loanApi: LoanApi,
+    private val safeApiCall: SafeApiCall
+) : LoanDataSource {
 
     override suspend fun getLoanConditions(): Either<Failure, LoanConditions> =
-            SafeApiCall.safeApiResult { loanApi.getLoanConditions() }
+        safeApiCall.safeApiResult { loanApi.getLoanConditions() }
 
     override suspend fun createLoan(loan: LoanCreated): Either<Failure, Loan> =
-            SafeApiCall.safeApiResult { loanApi.createLoan(loan) }
+        safeApiCall.safeApiResult { loanApi.createLoan(loan) }
 
     override suspend fun getLoanById(id: Int): Either<Failure, Loan> =
-            SafeApiCall.safeApiResult { loanApi.getLoanById(id) }
+        safeApiCall.safeApiResult { loanApi.getLoanById(id) }
 
     override suspend fun getLoansList(): Either<Failure, List<Loan>> =
-            SafeApiCall.safeApiResult { loanApi.getLoansList() }
+        safeApiCall.safeApiResult { loanApi.getLoansList() }
 
 }

@@ -38,6 +38,12 @@
             tools:context=".features.loan.ui.LoansListFragment"
             tools:listitem="@layout/item_loan" />
 
+        <!--        <TextView
+                    android:id="@+id/guideView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="afsafffafsssssssssssssssssssssssssssssss"-->
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/createLoanButton"
             android:layout_width="wrap_content"

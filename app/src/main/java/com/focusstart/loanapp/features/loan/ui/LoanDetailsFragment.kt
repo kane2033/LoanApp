@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_loan_details.*
 @AndroidEntryPoint
 class LoanDetailsFragment : BaseFragment() {
 
-    private val viewModel: LoansViewModel by navGraphViewModels(R.id.loanMasterDetailGraph) {
+    override val viewModel: LoansViewModel by navGraphViewModels(R.id.loanMasterDetailGraph) {
         defaultViewModelProviderFactory
     }
 
@@ -38,5 +38,8 @@ class LoanDetailsFragment : BaseFragment() {
             periodView.text = getString(R.string.loan_period, loan.period)
             percentView.text = getString(R.string.loan_percent, loan.percent)
         })
+
+        // Пока что нет специфичных ошибок для фрагмента
+        handleFailure({}, {})
     }
 }

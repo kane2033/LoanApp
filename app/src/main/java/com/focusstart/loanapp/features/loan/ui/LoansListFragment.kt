@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_loans_list.*
 @AndroidEntryPoint
 class LoansListFragment : BaseFragment() {
 
-    private val viewModel: LoansViewModel by navGraphViewModels(R.id.loanMasterDetailGraph) {
+    override val viewModel: LoansViewModel by navGraphViewModels(R.id.loanMasterDetailGraph) {
         defaultViewModelProviderFactory
     }
 
@@ -59,7 +59,6 @@ class LoansListFragment : BaseFragment() {
 
         listRefreshLayout.setOnRefreshListener {
             viewModel.getLoansList()
-            //listRefreshLayout.isRefreshing = false
         }
 
         viewModel.loans.observe(viewLifecycleOwner, {
@@ -71,32 +70,6 @@ class LoansListFragment : BaseFragment() {
             findNavController().navigate(R.id.action_loansListFragment_to_loanCreationGraph)
         }
 
-        viewModel.failure.observe(viewLifecycleOwner, {
-            makeToast(R.string.error_base)
-        })
+        handleFailure({ listRefreshLayout.isRefreshing = false }, {})
     }
-
-/*    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        requireActivity().menuInflater.inflate(R.menu.toolbar, menu)
-    }
-
-    // handle button activities
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_update -> {
-            listRefreshLayout.isRefreshing = true
-            viewModel.getLoansList()
-            true
-        }
-
-        R.id.action_settings -> {
-            findNavController().navigate(R.id.action_loansListFragment_to_settingsGraph)
-            true
-        }
-
-        else -> {
-            super.onOptionsItemSelected(item)
-        }
-    }*/
-
 }

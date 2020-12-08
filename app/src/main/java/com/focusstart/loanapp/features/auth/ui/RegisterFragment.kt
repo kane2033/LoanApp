@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.focusstart.loanapp.R
-import com.focusstart.loanapp.core.domain.exception.Failure
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.auth.presentation.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_register.*
 @AndroidEntryPoint
 class RegisterFragment: BaseFragment() {
 
-    private val viewModel: AuthViewModel by navGraphViewModels(R.id.authGraph) {
+    override val viewModel: AuthViewModel by navGraphViewModels(R.id.authGraph) {
         defaultViewModelProviderFactory
     }
 
@@ -44,14 +43,7 @@ class RegisterFragment: BaseFragment() {
             }
         })
 
-        viewModel.failure.observe(viewLifecycleOwner, { failure ->
-            failure.getContentIfNotHandled()?.let {
-                when (it) {
-                    is Failure.RequestFailure -> makeToast(R.string.error_request)
-                    is Failure.NetworkConnection -> makeToast(R.string.error_network_connection)
-                    else -> makeToast(R.string.success_login)
-                }
-            }
-        })
+        // Пока что нет специфичных ошибок для фрагмента
+        handleFailure({}, {})
     }
 }

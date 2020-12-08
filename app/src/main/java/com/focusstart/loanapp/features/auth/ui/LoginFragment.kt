@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.focusstart.loanapp.R
-import com.focusstart.loanapp.core.domain.exception.Failure
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.auth.presentation.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 @AndroidEntryPoint
 class LoginFragment : BaseFragment() {
 
-    private val viewModel: AuthViewModel by navGraphViewModels(R.id.authGraph) {
+    override val viewModel: AuthViewModel by navGraphViewModels(R.id.authGraph) {
         defaultViewModelProviderFactory
     }
 
@@ -47,23 +46,13 @@ class LoginFragment : BaseFragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        viewModel.failure.observe(viewLifecycleOwner, { failure ->
-            failure.getContentIfNotHandled()?.let { // Создаем уведомление, только если его не было
-                when (it) {
-                    is Failure.RequestFailure -> handleRequestFailure(it.code)
-                    is Failure.NetworkConnection -> makeToast(R.string.error_network_connection)
-                    else -> {
-                    }
-                }
+        // Feature ошибок нет, лямбда пустая;
+        // Обрабатываем только http ошибки
+        handleFailure({}, { code ->
+            when (code) {
+                404 -> makeToast(R.string.error_user_not_found)
+                403 -> makeToast("403 Forbidden")
             }
-
         })
-    }
-
-    private fun handleRequestFailure(code: Int) {
-        when (code) {
-            404 -> makeToast(R.string.error_user_not_found)
-            403 -> makeToast("403 Forbidden")
-        }
     }
 }

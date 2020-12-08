@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment() {
 
-    private val viewModel: SettingsViewModel by viewModels()
+    override val viewModel: SettingsViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -36,5 +36,8 @@ class SettingsFragment : BaseFragment() {
             viewModel.logout()
             findNavController().navigate(R.id.action_settingsFragment_to_authGraph)
         }
+
+        // Пока что нет специфичных ошибок для фрагмента
+        handleFailure({}, {})
     }
 }

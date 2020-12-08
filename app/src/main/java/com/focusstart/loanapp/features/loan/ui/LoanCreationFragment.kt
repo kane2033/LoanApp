@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_loan_creation.*
 @AndroidEntryPoint
 class LoanCreationFragment : BaseFragment() {
 
-    private val viewModel: LoanCreateViewModel by navGraphViewModels(R.id.loanCreationGraph) {
+    override val viewModel: LoanCreateViewModel by navGraphViewModels(R.id.loanCreationGraph) {
         defaultViewModelProviderFactory
     }
 
@@ -64,12 +64,14 @@ class LoanCreationFragment : BaseFragment() {
 
         createLoanButton.setOnClickListener {
             viewModel.loanConditions.value?.let { conditions ->
-                val loan = LoanCreated(setAmountBar.progress,
-                        conditions.period,
-                        conditions.percent,
-                        lastNameInputView.editText!!.text.toString(),
-                        firstNameInputView.editText!!.text.toString(),
-                        phoneInputView.editText!!.text.toString())
+                val loan = LoanCreated(
+                    setAmountBar.progress,
+                    conditions.period,
+                    conditions.percent,
+                    lastNameInputView.editText!!.text.toString(),
+                    firstNameInputView.editText!!.text.toString(),
+                    phoneInputView.editText!!.text.toString()
+                )
                 viewModel.createLoan(loan)
             }
         }
@@ -78,5 +80,8 @@ class LoanCreationFragment : BaseFragment() {
         viewModel.createdLoan.observe(viewLifecycleOwner, {
             findNavController().navigate(R.id.action_loanCreationFragment_to_loanCreatedFragment)
         })
+
+        // Пока что нет специфичных ошибок для фрагмента
+        handleFailure({}, {})
     }
 }
