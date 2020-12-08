@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.loan.domain.entity.LoanCreated
@@ -28,6 +30,11 @@ class LoanCreationFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolBar.setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
 
         val barStep = 500 // Шаг ползунка выбора суммы займа (в рублях)
 
@@ -65,7 +72,7 @@ class LoanCreationFragment : BaseFragment() {
         createLoanButton.setOnClickListener {
             viewModel.loanConditions.value?.let { conditions ->
                 val loan = LoanCreated(
-                    setAmountBar.progress,
+                    setAmountBar.progress * barStep,
                     conditions.period,
                     conditions.percent,
                     lastNameInputView.editText!!.text.toString(),

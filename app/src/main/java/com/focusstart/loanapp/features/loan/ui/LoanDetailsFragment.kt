@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.loan.presentation.LoanFieldsSetter
@@ -26,6 +29,11 @@ class LoanDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolBar.setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
 
         // Установка всех полей займа
         viewModel.selectedLoan.observe(viewLifecycleOwner, { loan ->

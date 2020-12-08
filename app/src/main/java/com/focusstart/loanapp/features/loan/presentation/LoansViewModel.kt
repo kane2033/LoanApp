@@ -14,10 +14,6 @@ class LoansViewModel
 
     var selectedLoan = MutableLiveData<Loan>()
 
-    init {
-        getLoansList()
-    }
-
     fun getLoansList() {
         getLoansList.invoke(
                 params = None(),

@@ -15,6 +15,7 @@
     <string name="loan_registered">Registered</string>
     <string name="loan_rejected">Rejected</string>
     <string name="loan_status_image_description">Loan status image</string>
+    <string name="loan_tutorial">Press the "+" button to make new loan.</string>
 
     <!--Loan details-->
     <string name="loan_date">Loan by %1$s</string>
@@ -59,6 +60,13 @@
     <string name="settings_header">Settings</string>
     <string name="settings_language_button">Change language</string>
     <string name="settings_logout_button">Log out</string>
+
+    <!--Заголовки фрагментов-->
+    <string name="label_loans_list">Loans</string>
+    <string name="label_loan_details">Loan info</string>
+    <string name="label_loan_creation">Create loan</string>
+    <string name="label_loan_created">Loan created!</string>
+    <string name="label_settings">Settings</string>
 
     <!-- Map языков:
     languages_keys[i] == languages[i]-->

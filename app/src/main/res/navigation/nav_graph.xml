@@ -11,7 +11,7 @@
         <fragment
             android:id="@+id/loanCreatedFragment"
             android:name="com.focusstart.loanapp.features.loan.ui.LoanCreatedFragment"
-            android:label="fragment_loan_created"
+            android:label="@string/label_loan_created"
             tools:layout="@layout/fragment_loan_created">
             <action
                 android:id="@+id/action_loanCreatedFragment_to_loanMasterDetailGraph"
@@ -22,7 +22,7 @@
         <fragment
             android:id="@+id/loanCreationFragment"
             android:name="com.focusstart.loanapp.features.loan.ui.LoanCreationFragment"
-            android:label="fragment_loan_creation"
+            android:label="@string/label_loan_creation"
             tools:layout="@layout/fragment_loan_creation">
             <action
                 android:id="@+id/action_loanCreationFragment_to_loanCreatedFragment"
@@ -37,12 +37,12 @@
         <fragment
             android:id="@+id/loanDetailsFragment"
             android:name="com.focusstart.loanapp.features.loan.ui.LoanDetailsFragment"
-            android:label="fragment_loan_details"
+            android:label="@string/label_loan_details"
             tools:layout="@layout/fragment_loan_details" />
         <fragment
             android:id="@+id/loansListFragment"
             android:name="com.focusstart.loanapp.features.loan.ui.LoansListFragment"
-            android:label="fragment_loans_list"
+            android:label="@string/label_loans_list"
             tools:layout="@layout/fragment_loans_list">
             <action
                 android:id="@+id/action_loansListFragment_to_loanDetailsFragment"
@@ -62,12 +62,12 @@
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.focusstart.loanapp.features.auth.ui.RegisterFragment"
-            android:label="register_fragment"
+            android:label="Registration"
             tools:layout="@layout/fragment_register" />
         <fragment
             android:id="@+id/loginFragment"
             android:name="com.focusstart.loanapp.features.auth.ui.LoginFragment"
-            android:label="login_fragment"
+            android:label="Login"
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_loginFragment_to_registerFragment"
@@ -85,7 +85,7 @@
         <fragment
             android:id="@+id/settingsFragment"
             android:name="com.focusstart.loanapp.features.settings.ui.SettingsFragment"
-            android:label="fragment_settings"
+            android:label="@string/label_settings"
             tools:layout="@layout/fragment_settings" />
         <action
             android:id="@+id/action_settingsFragment_to_authGraph"

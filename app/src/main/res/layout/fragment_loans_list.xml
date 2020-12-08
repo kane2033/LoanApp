@@ -23,26 +23,36 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:elevation="4dp"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/loansRecyclerView"
-            android:name=".features.loan.ui.LoansListFragment"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:context=".features.loan.ui.LoansListFragment"
-            tools:listitem="@layout/item_loan" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!--        <TextView
-                    android:id="@+id/guideView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="afsafffafsssssssssssssssssssssssssssssss"-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/loansRecyclerView"
+                android:name=".features.loan.ui.LoansListFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:context=".features.loan.ui.LoansListFragment"
+                tools:listitem="@layout/item_loan" />
+
+            <TextView
+                android:id="@+id/guideView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/loan_tutorial"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:padding="@dimen/fragment_margin"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:gravity="center"
+                android:visibility="gone" />
+        </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/createLoanButton"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/registerFragmentContainer"
@@ -7,265 +7,279 @@
     android:layout_height="match_parent"
     tools:context=".features.loan.ui.LoanCreationFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/fragment_margin">
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <TextView
-            android:id="@+id/createLoanHeader"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:text="@string/loan_create_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/minAmountView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/createLoanHeader"
-            tools:text="1 ₽" />
-
-        <SeekBar
-            android:id="@+id/setAmountBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            android:contentDescription="@string/loan_create_amount_description"
-            app:layout_constraintBottom_toBottomOf="@+id/minAmountView"
-            app:layout_constraintEnd_toStartOf="@+id/maxAmountView"
-            app:layout_constraintStart_toEndOf="@+id/minAmountView"
-            app:layout_constraintTop_toTopOf="@+id/minAmountView"
-            tools:src="@drawable/ic_approved" />
-
-        <TextView
-            android:id="@+id/maxAmountView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintBottom_toBottomOf="@+id/minAmountView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/minAmountView"
-            tools:text="50000 ₽" />
-
-        <TextView
-            android:id="@+id/periodView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_period"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/minAmountView"
-            tools:text="Срок займа: 30 д." />
-
-
-        <TextView
-            android:id="@+id/percentView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/periodView"
-            tools:text="Процентная ставка: 7.7 %" />
-
-        <TextView
-            android:id="@+id/calculateAmountHeaderView"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:text="@string/loan_create_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/percentView" />
-
-        <TextView
-            android:id="@+id/amountView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/fragment_margin"
-            android:layout_marginBottom="8dp"
-            android:layout_marginHorizontal="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/plusView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calculateAmountHeaderView"
-            tools:text="25000 ₽" />
-
-        <TextView
-            android:id="@+id/plusView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/amountView"
-            app:layout_constraintEnd_toStartOf="@+id/percentSumView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/amountView"
-            app:layout_constraintTop_toTopOf="@+id/amountView"
-            tools:text="+" />
-
-        <TextView
-            android:id="@+id/percentSumView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/plusView"
-            app:layout_constraintEnd_toStartOf="@+id/equalsView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/plusView"
-            app:layout_constraintTop_toTopOf="@+id/plusView"
-            tools:text="1925 ₽" />
-
-        <TextView
-            android:id="@+id/equalsView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/equals"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="143dp"
-            app:layout_constraintBottom_toBottomOf="@+id/amountResultView"
-            app:layout_constraintEnd_toStartOf="@+id/amountResultView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/percentSumView"
-            app:layout_constraintTop_toTopOf="@+id/amountResultView"
-            tools:text="=" />
-
-        <TextView
-            android:id="@+id/amountResultView"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/loan_create_amount_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/amountView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/equalsView"
-            app:layout_constraintTop_toTopOf="@+id/amountView"
-            tools:text="26925 ₽" />
-
-
-        <TextView
-            android:id="@+id/amountSubView"
-            android:text="@string/loan_create_amount_sub"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/plusView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountView" />
-
-        <TextView
-            android:id="@+id/percentSumSubView"
-            android:text="@string/loan_create_percent_sum_sub"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/equalsView"
-            app:layout_constraintStart_toEndOf="@+id/plusView"
-            app:layout_constraintTop_toBottomOf="@+id/percentSumView" />
-
-        <TextView
-            android:id="@+id/amountResultSubView"
-            android:text="@string/loan_create_total_sub"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/equalsView"
-            app:layout_constraintTop_toBottomOf="@+id/amountResultView" />
-
-        <TextView
-            android:id="@+id/credentialsHeaderView"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:text="@string/loan_create_credentials_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountSubView" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lastNameInputView"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            android:hint="@string/hint_last_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/credentialsHeaderView">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <com.google.android.material.textfield.TextInputEditText
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/fragment_margin">
+
+            <TextView
+                android:id="@+id/minAmountView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:text="@string/loan_create_amount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1 ₽" />
+
+            <SeekBar
+                android:id="@+id/setAmountBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:contentDescription="@string/loan_create_amount_description"
+                app:layout_constraintBottom_toBottomOf="@+id/minAmountView"
+                app:layout_constraintEnd_toStartOf="@+id/maxAmountView"
+                app:layout_constraintStart_toEndOf="@+id/minAmountView"
+                app:layout_constraintTop_toTopOf="@+id/minAmountView"
+                tools:src="@drawable/ic_approved" />
+
+            <TextView
+                android:id="@+id/maxAmountView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:text="@string/loan_create_amount"
+                app:layout_constraintBottom_toBottomOf="@+id/minAmountView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/minAmountView"
+                tools:text="50000 ₽" />
+
+            <TextView
+                android:id="@+id/periodView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:text="@string/loan_create_period"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/minAmountView"
+                tools:text="Срок займа: 30 д." />
+
+
+            <TextView
+                android:id="@+id/percentView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:text="@string/loan_create_percent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/periodView"
+                tools:text="Процентная ставка: 7.7 %" />
+
+            <TextView
+                android:id="@+id/calculateAmountHeaderView"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:text="@string/loan_create_total"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/percentView" />
+
+            <TextView
+                android:id="@+id/amountView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="@dimen/fragment_margin"
+                android:layout_marginBottom="8dp"
+                android:text="@string/loan_create_amount_number"
+                app:layout_constraintEnd_toStartOf="@+id/plusView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculateAmountHeaderView"
+                tools:text="25000 ₽" />
+
+            <TextView
+                android:id="@+id/plusView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/plus"
+                app:layout_constraintBottom_toBottomOf="@+id/amountView"
+                app:layout_constraintEnd_toStartOf="@+id/percentSumView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/amountView"
+                app:layout_constraintTop_toTopOf="@+id/amountView"
+                tools:text="+" />
+
+            <TextView
+                android:id="@+id/percentSumView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/loan_create_amount_empty"
+                app:layout_constraintBottom_toBottomOf="@+id/plusView"
+                app:layout_constraintEnd_toStartOf="@+id/equalsView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/plusView"
+                app:layout_constraintTop_toTopOf="@+id/plusView"
+                tools:text="1925 ₽" />
+
+            <TextView
+                android:id="@+id/equalsView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="143dp"
+                android:text="@string/equals"
+                app:layout_constraintBottom_toBottomOf="@+id/amountResultView"
+                app:layout_constraintEnd_toStartOf="@+id/amountResultView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/percentSumView"
+                app:layout_constraintTop_toTopOf="@+id/amountResultView"
+                tools:text="=" />
+
+            <TextView
+                android:id="@+id/amountResultView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/loan_create_amount_empty"
+                app:layout_constraintBottom_toBottomOf="@+id/amountView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/equalsView"
+                app:layout_constraintTop_toTopOf="@+id/amountView"
+                tools:text="26925 ₽" />
+
+
+            <TextView
+                android:id="@+id/amountSubView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="@string/loan_create_amount_sub"
+                app:layout_constraintEnd_toStartOf="@+id/plusView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amountView" />
+
+            <TextView
+                android:id="@+id/percentSumSubView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="@string/loan_create_percent_sum_sub"
+                app:layout_constraintEnd_toStartOf="@+id/equalsView"
+                app:layout_constraintStart_toEndOf="@+id/plusView"
+                app:layout_constraintTop_toBottomOf="@+id/percentSumView" />
+
+            <TextView
+                android:id="@+id/amountResultSubView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="@string/loan_create_total_sub"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/equalsView"
+                app:layout_constraintTop_toBottomOf="@+id/amountResultView" />
+
+            <TextView
+                android:id="@+id/credentialsHeaderView"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:text="@string/loan_create_credentials_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amountSubView" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastNameInputView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapCharacters" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_margin="@dimen/fragment_margin"
+                android:hint="@string/hint_last_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/credentialsHeaderView">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/firstNameInputView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            android:hint="@string/hint_first_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameInputView">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/firstNameInputView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapCharacters" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_margin="@dimen/fragment_margin"
+                android:hint="@string/hint_first_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameInputView">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneInputView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            android:hint="@string/hint_phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameInputView">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneInputView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_margin="@dimen/fragment_margin"
+                android:hint="@string/hint_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/firstNameInputView">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/createLoanButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fragment_margin"
-            android:gravity="center"
-            android:text="@string/button_loan_create"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneInputView" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/createLoanButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:gravity="center"
+                android:text="@string/button_loan_create"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneInputView" />
 
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

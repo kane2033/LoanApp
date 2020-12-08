@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
 import com.focusstart.loanapp.features.loan.presentation.LoansDataAdapter
@@ -29,6 +31,14 @@ class LoansListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Получаем список займов с сервера
+        viewModel.getLoansList()
+
+        // Настройка навигации тулбаром на основе nav_graph
+        toolBar.setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(setOf(R.id.loansListFragment))
+        )
         toolBar.inflateMenu(R.menu.toolbar)
         toolBar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -62,6 +72,7 @@ class LoansListFragment : BaseFragment() {
         }
 
         viewModel.loans.observe(viewLifecycleOwner, {
+            if (it.isEmpty()) guideView.visibility = View.VISIBLE else View.GONE
             loansAdapter.updateList(it)
             listRefreshLayout.isRefreshing = false
         })

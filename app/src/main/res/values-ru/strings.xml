@@ -28,7 +28,6 @@
     <string name="loan_create_header">Создать заём</string>
     <string name="loan_create_amount_header">Сумма займа</string>
     <string name="loan_create_amount_description">ВЫберите сумму займа</string>
-    <string name="loan_create_amount_max">%1$d ₽</string>
     <string name="loan_create_period">Срок займа: %1$d d.</string>
     <string name="loan_create_percent">Процентная ставка: %1$.2f %%</string>
     <string name="loan_create_percent_sum_sub">Процент</string>
@@ -48,4 +47,11 @@
     <string name="settings_language_button">Сменить язык</string>
     <string name="settings_logout_button">Выйти из учетной записи</string>
     <string name="settings_header">Настройки</string>
+    <string name="loan_tutorial">Нажмите кнопку "+" для создания нового займа.</string>
+    <string name="label_loans_list">Займы</string>
+    <string name="label_loan_details">Информация о займе</string>
+    <string name="label_loan_creation">Создать заём</string>
+    <string name="label_loan_created">Заём создан!</string>
+    <string name="label_settings">Настройки</string>
+    <string name="error_user_already_exists">Такой пользователь уже существует</string>
 </resources>
