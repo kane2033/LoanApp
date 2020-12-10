@@ -34,7 +34,7 @@
     <string name="loan_create_amount_sub">Сумма займа</string>
     <string name="loan_create_total">К возврату:</string>
     <string name="loan_create_total_sub">К возврату</string>
-    <string name="loan_create_credentials_header">Пожалуйста введите свои данные:</string>
+    <string name="loan_create_credentials_header">Пожалуйста, введите свои данные:</string>
     <string name="hint_first_name">Имя</string>
     <string name="hint_last_name">Фамилия</string>
     <string name="hint_phone">Телефон</string>
@@ -54,4 +54,10 @@
     <string name="label_loan_created">Заём создан!</string>
     <string name="label_settings">Настройки</string>
     <string name="error_user_already_exists">Такой пользователь уже существует</string>
+    <string name="notification_channel_name">Погашение займа</string>
+    <string name="notification_channel_description">Уведомления о необходимости погашения займа.</string>
+    <string name="loan_repayment">Необходимо вернуть %1$.2f ₽ до %2$s</string>
+    <string name="loan_create_repayment_date">Необходимо вернуть до %1$s</string>
+    <string name="notification_title">Погашение займа</string>
+    <string name="notification_message">Уважаемый %1$s %2$s, пожалуйста погасите свой займ до %3$s в размере %4$.2f ₽.</string>
 </resources>

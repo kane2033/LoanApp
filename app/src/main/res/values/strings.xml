@@ -26,6 +26,7 @@
     <string name="loan_amount">Amount: %1$d ₽</string>
     <string name="loan_amount_number" translatable="false">%1$d ₽</string>
     <string name="loan_period">Period: %1$d d.</string>
+    <string name="loan_repayment">Need to repay %1$.2f ₽ before %2$s</string>
     <string name="plus" translatable="false">+</string>
     <string name="equals" translatable="false">=</string>
     <string name="loan_percent">Interest rate: %1$.2f %%</string>
@@ -35,6 +36,7 @@
     <string name="loan_create_amount_description">Choose amount</string>
     <string name="loan_create_amount" translatable="false">%1$d ₽</string>
     <string name="loan_create_period">Loan period: %1$d d.</string>
+    <string name="loan_create_repayment_date">Needs to be repaid before %1$s</string>
     <string name="loan_create_percent">Interest rate: %1$.2f %%</string>
     <string name="loan_create_total">Total:</string>
     <string name="loan_create_amount_number" translatable="false">%1$d ₽</string>
@@ -61,12 +63,18 @@
     <string name="settings_language_button">Change language</string>
     <string name="settings_logout_button">Log out</string>
 
-    <!--Заголовки фрагментов-->
+    <!-- Заголовки фрагментов-->
     <string name="label_loans_list">Loans</string>
     <string name="label_loan_details">Loan info</string>
     <string name="label_loan_creation">Create loan</string>
     <string name="label_loan_created">Loan created!</string>
     <string name="label_settings">Settings</string>
+
+    <!-- Уведомления-->
+    <string name="notification_channel_name">Loan repayment</string>
+    <string name="notification_channel_description">Notifications about the need to repay the loan.</string>
+    <string name="notification_title">Loan repayment</string>
+    <string name="notification_message">Dear %1$s %2$s, please repay your loan before %3$s in amount of %4$.2f ₽.</string>
 
     <!-- Map языков:
     languages_keys[i] == languages[i]-->

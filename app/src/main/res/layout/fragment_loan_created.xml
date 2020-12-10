@@ -50,7 +50,7 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fragment_margin"
+                android:layout_margin="8dp"
                 app:layout_constraintStart_toEndOf="@+id/statusImageView"
                 app:layout_constraintTop_toTopOf="@+id/statusImageView"
                 tools:text="Заём от 25.05.2020" />
@@ -60,7 +60,7 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fragment_margin"
+                android:layout_margin="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/statusImageView"
                 app:layout_constraintStart_toEndOf="@+id/statusImageView"
                 app:layout_constraintTop_toBottomOf="@+id/dateView"
@@ -74,7 +74,7 @@
                 android:layout_margin="@dimen/fragment_margin"
                 android:text="@string/loan_borrower_info"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/percentView"
+                app:layout_constraintTop_toBottomOf="@+id/repaymentView"
                 tools:text="Информация о заёмщике" />
 
             <TextView
@@ -126,6 +126,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/periodView"
                 tools:text="Процент займа: 4.4 %" />
+
+            <TextView
+                android:id="@+id/repaymentView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/percentView"
+                tools:text="Необходимо вернуть 6333 р. до 20.12.2020" />
 
             <TextView
                 android:id="@+id/guideInfoView"

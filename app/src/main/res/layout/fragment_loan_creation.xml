@@ -80,7 +80,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/minAmountView"
                 tools:text="Срок займа: 30 д." />
 
-
             <TextView
                 android:id="@+id/percentView"
                 style="@style/TextAppearance.MaterialComponents.Body1"
@@ -107,15 +106,13 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="@dimen/fragment_margin"
-                android:layout_marginBottom="8dp"
+                android:layout_margin="8dp"
                 android:text="@string/loan_create_amount_number"
+                app:layout_constraintEnd_toEndOf="@+id/amountSubView"
                 app:layout_constraintEnd_toStartOf="@+id/plusView"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculateAmountHeaderView"
+                app:layout_constraintStart_toStartOf="@+id/amountSubView"
+                app:layout_constraintTop_toBottomOf="@+id/amountSubView"
                 tools:text="25000 ₽" />
 
             <TextView
@@ -126,9 +123,8 @@
                 android:layout_margin="8dp"
                 android:text="@string/plus"
                 app:layout_constraintBottom_toBottomOf="@+id/amountView"
-                app:layout_constraintEnd_toStartOf="@+id/percentSumView"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/amountView"
+                app:layout_constraintEnd_toStartOf="@+id/percentSumSubView"
+                app:layout_constraintStart_toEndOf="@+id/amountSubView"
                 app:layout_constraintTop_toTopOf="@+id/amountView"
                 tools:text="+" />
 
@@ -139,11 +135,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/loan_create_amount_empty"
-                app:layout_constraintBottom_toBottomOf="@+id/plusView"
+                app:layout_constraintEnd_toEndOf="@+id/percentSumSubView"
                 app:layout_constraintEnd_toStartOf="@+id/equalsView"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/plusView"
-                app:layout_constraintTop_toTopOf="@+id/plusView"
+                app:layout_constraintStart_toStartOf="@+id/percentSumSubView"
+                app:layout_constraintTop_toBottomOf="@+id/percentSumSubView"
                 tools:text="1925 ₽" />
 
             <TextView
@@ -152,12 +149,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_marginStart="143dp"
+                android:layout_marginEnd="2dp"
                 android:text="@string/equals"
                 app:layout_constraintBottom_toBottomOf="@+id/amountResultView"
-                app:layout_constraintEnd_toStartOf="@+id/amountResultView"
+                app:layout_constraintEnd_toStartOf="@+id/amountResultSubView"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/percentSumView"
+                app:layout_constraintStart_toEndOf="@+id/percentSumSubView"
                 app:layout_constraintTop_toTopOf="@+id/amountResultView"
                 tools:text="=" />
 
@@ -168,11 +165,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/loan_create_amount_empty"
-                app:layout_constraintBottom_toBottomOf="@+id/amountView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="@+id/amountResultSubView"
                 app:layout_constraintStart_toEndOf="@+id/equalsView"
-                app:layout_constraintTop_toTopOf="@+id/amountView"
+                app:layout_constraintStart_toStartOf="@+id/amountResultSubView"
+                app:layout_constraintTop_toBottomOf="@+id/amountResultSubView"
                 tools:text="26925 ₽" />
 
 
@@ -183,9 +179,10 @@
                 android:layout_margin="8dp"
                 android:gravity="center"
                 android:text="@string/loan_create_amount_sub"
-                app:layout_constraintEnd_toStartOf="@+id/plusView"
+                app:layout_constraintEnd_toStartOf="@+id/percentSumSubView"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountView" />
+                app:layout_constraintTop_toBottomOf="@+id/calculateAmountHeaderView" />
 
             <TextView
                 android:id="@+id/percentSumSubView"
@@ -194,20 +191,36 @@
                 android:layout_margin="8dp"
                 android:gravity="center"
                 android:text="@string/loan_create_percent_sum_sub"
-                app:layout_constraintEnd_toStartOf="@+id/equalsView"
-                app:layout_constraintStart_toEndOf="@+id/plusView"
-                app:layout_constraintTop_toBottomOf="@+id/percentSumView" />
+                app:layout_constraintEnd_toStartOf="@+id/amountResultSubView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/amountSubView"
+                app:layout_constraintTop_toBottomOf="@+id/calculateAmountHeaderView" />
 
             <TextView
                 android:id="@+id/amountResultSubView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:layout_marginStart="128dp"
+                android:layout_marginTop="62dp"
                 android:gravity="center"
                 android:text="@string/loan_create_total_sub"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/equalsView"
-                app:layout_constraintTop_toBottomOf="@+id/amountResultView" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/percentSumSubView"
+                app:layout_constraintTop_toBottomOf="@+id/calculateAmountHeaderView" />
+
+            <TextView
+                android:id="@+id/repaymentDateView"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fragment_margin"
+                android:layout_marginTop="22dp"
+                android:text="@string/loan_create_period"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amountView"
+                tools:text="Вернуть до: 20.12.2020" />
 
             <TextView
                 android:id="@+id/credentialsHeaderView"
@@ -217,7 +230,7 @@
                 android:layout_margin="@dimen/fragment_margin"
                 android:text="@string/loan_create_credentials_header"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amountSubView" />
+                app:layout_constraintTop_toBottomOf="@+id/repaymentDateView" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastNameInputView"
@@ -232,7 +245,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapCharacters" />
+                    android:inputType="textPersonName|textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -248,7 +261,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapCharacters" />
+                    android:inputType="textPersonName|textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

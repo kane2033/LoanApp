@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
+import com.focusstart.loanapp.features.loan.domain.entity.Loan
 import com.focusstart.loanapp.features.loan.domain.entity.LoanCreated
 import com.focusstart.loanapp.features.loan.presentation.LoanCreateViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,8 +25,8 @@ class LoanCreationFragment : BaseFragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_loan_creation, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,15 +46,23 @@ class LoanCreationFragment : BaseFragment() {
             setAmountBar.max = 1 + conditions.maxAmount / barStep
             setAmountBar.min = 1
             periodView.text = getString(R.string.loan_create_period, conditions.period)
+            repaymentDateView.text = getString(
+                R.string.loan_create_repayment_date,
+                Loan.calcRepaymentDate(conditions.period)
+            )
             percentView.text = getString(R.string.loan_create_percent, conditions.percent)
         })
 
         setAmountBar.setOnSeekBarChangeListener(object :
-                SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar,
-                                           progress: Int, fromUser: Boolean) {
-                amountView.text = getString(R.string.loan_create_amount_number,
-                        progress * barStep)
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seek: SeekBar,
+                progress: Int, fromUser: Boolean
+            ) {
+                amountView.text = getString(
+                    R.string.loan_create_amount_number,
+                    progress * barStep
+                )
             }
 
             override fun onStartTrackingTouch(seek: SeekBar) {
@@ -62,10 +71,12 @@ class LoanCreationFragment : BaseFragment() {
             override fun onStopTrackingTouch(seek: SeekBar) {
                 val percent = viewModel.loanConditions.value?.percent ?: 1.0
                 val amount = seek.progress * barStep
-                val percentSum = percent * amount / 100
+                val percentSum = Loan.calcPercent(amount, percent)
                 percentSumView.text = getString(R.string.loan_create_percent_number, percentSum)
-                amountResultView.text = getString(R.string.loan_create_total_number,
-                        amount + percentSum)
+                amountResultView.text = getString(
+                    R.string.loan_create_total_number,
+                    amount + percentSum
+                )
             }
         })
 

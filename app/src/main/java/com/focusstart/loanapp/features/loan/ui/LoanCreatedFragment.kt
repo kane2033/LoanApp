@@ -23,8 +23,8 @@ class LoanCreatedFragment : BaseFragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.fragment_loan_created, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,6 +45,10 @@ class LoanCreatedFragment : BaseFragment() {
             amountView.text = getString(R.string.loan_amount, loan.amount)
             periodView.text = getString(R.string.loan_period, loan.period)
             percentView.text = getString(R.string.loan_percent, loan.percent)
+            repaymentView.text =
+                getString(R.string.loan_repayment, loan.repaymentAmount, loan.repaymentDate)
+
+            viewModel.scheduleReminder(requireContext(), loan)
         })
 
         okButton.setOnClickListener {
