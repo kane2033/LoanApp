@@ -68,7 +68,10 @@ class LoanCreateViewModel
             loan.repaymentDate,
             loan.repaymentAmount
         )
-        val data = Data.Builder().putString(NotifyWork.MESSAGE_KEY, message).build()
+        val data = Data.Builder()
+            .putString(NotifyWork.MESSAGE_KEY, message)
+            .putInt(NotifyWork.ID_KEY, loan.id)
+            .build()
         val notificationWork =
             OneTimeWorkRequestBuilder<NotifyWork>()
                 // Создаем напоминание за два дня до даты возврата

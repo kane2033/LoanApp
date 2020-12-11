@@ -1,4 +1,4 @@
-package com.focusstart.loanapp.features.auth.domain.interactor
+package com.focusstart.loanapp.features.loan.domain.interactor
 
 import com.focusstart.loanapp.core.domain.exception.Failure
 import com.focusstart.loanapp.core.domain.functional.Either

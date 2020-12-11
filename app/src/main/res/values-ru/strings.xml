@@ -28,7 +28,7 @@
     <string name="loan_create_header">Создать заём</string>
     <string name="loan_create_amount_header">Сумма займа</string>
     <string name="loan_create_amount_description">ВЫберите сумму займа</string>
-    <string name="loan_create_period">Срок займа: %1$d d.</string>
+    <string name="loan_create_period">Срок займа: %1$d д.</string>
     <string name="loan_create_percent">Процентная ставка: %1$.2f %%</string>
     <string name="loan_create_percent_sum_sub">Процент</string>
     <string name="loan_create_amount_sub">Сумма займа</string>

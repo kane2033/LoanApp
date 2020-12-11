@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authGraph">
+    app:startDestination="@id/loanMasterDetailGraph">
 
     <navigation
         android:id="@+id/loanCreationGraph"
@@ -38,7 +38,16 @@
             android:id="@+id/loanDetailsFragment"
             android:name="com.focusstart.loanapp.features.loan.ui.LoanDetailsFragment"
             android:label="@string/label_loan_details"
-            tools:layout="@layout/fragment_loan_details" />
+            tools:layout="@layout/fragment_loan_details">
+            <deepLink
+                android:id="@+id/deepLink"
+                app:action="ACTION_VIEW"
+                app:uri="app://loanapp.ru/loan/details/{id}" />
+            <argument
+                android:name="id"
+                app:argType="integer"
+                android:defaultValue="-1" />
+        </fragment>
         <fragment
             android:id="@+id/loansListFragment"
             android:name="com.focusstart.loanapp.features.loan.ui.LoansListFragment"
@@ -50,11 +59,18 @@
             <action
                 android:id="@+id/action_loansListFragment_to_loanCreationGraph"
                 app:destination="@id/loanCreationGraph" />
-
+            <action
+                android:id="@+id/action_loansListFragment_to_authGraph"
+                app:destination="@id/authGraph"
+                app:popUpTo="@id/loansListFragment"
+                app:popUpToInclusive="true" />
         </fragment>
         <action
             android:id="@+id/action_loansListFragment_to_settingsGraph"
             app:destination="@id/settingsGraph" />
+        <action
+            android:id="@+id/action_global_authGraph"
+            app:destination="@id/authGraph" />
     </navigation>
     <navigation
         android:id="@+id/authGraph"

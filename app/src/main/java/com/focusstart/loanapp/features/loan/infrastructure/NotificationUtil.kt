@@ -6,12 +6,9 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
-import android.content.Intent
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.focusstart.loanapp.R
-import com.focusstart.loanapp.core.ui.MainActivity
 
 /*
 * Класс, отвечающий за создание и отсылку уведомлений
@@ -21,7 +18,7 @@ object NotificationUtil {
     private const val DEFAULT_CHANNEL_ID = "0"
     private const val NOTIFICATION_ID = 111
 
-    fun createNotification(context: Context, message: String) {
+    fun createNotification(context: Context, pendingIntent: PendingIntent, message: String) {
         // Получаем менеджер уведомлений
         val notificationManager =
             context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -30,9 +27,8 @@ object NotificationUtil {
         // Создаем уведомление и отображаем его
         notificationManager.notify(
             NOTIFICATION_ID,
-            buildNotification(context, NOTIFICATION_ID, message)
+            buildNotification(context, pendingIntent, message)
         )
-        Log.e("LOAN_NOTIF", "NotificationUtil.createNotification() - notification sent!")
     }
 
     // Канал уведомлений создается перед отправкой
@@ -51,20 +47,15 @@ object NotificationUtil {
     // Базовый метод создания уведомления
     private fun buildNotification(
         context: Context,
-        notificationId: Int,
+        pendingIntent: PendingIntent,
         msg: String
     ): Notification {
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            notificationId,
-            Intent(context, MainActivity::class.java),
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
         return NotificationCompat.Builder(context, DEFAULT_CHANNEL_ID)
-            .setContentIntent(pendingIntent)
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentIntent(pendingIntent) // Добавляем дип линк
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(context.getString(R.string.notification_title))
             .setContentText(msg)
+            .setAutoCancel(true)
             .setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(msg)

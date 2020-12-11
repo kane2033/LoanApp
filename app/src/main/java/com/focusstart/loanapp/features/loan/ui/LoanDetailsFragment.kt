@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.focusstart.loanapp.R
 import com.focusstart.loanapp.core.ui.BaseFragment
+import com.focusstart.loanapp.features.loan.infrastructure.NotifyWork
 import com.focusstart.loanapp.features.loan.presentation.LoanFieldsSetter
 import com.focusstart.loanapp.features.loan.presentation.LoansViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,13 @@ class LoanDetailsFragment : BaseFragment() {
             findNavController(),
             AppBarConfiguration(findNavController().graph)
         )
+
+        // Если фрагмент открыт через дип линк,
+        // делаем запрос на получение займа по айди
+        val id = arguments?.getInt(NotifyWork.ID_KEY)
+        if (id != null && id != 0) {
+            viewModel.getLoanById(id)
+        }
 
         // Установка всех полей займа
         viewModel.selectedLoan.observe(viewLifecycleOwner, { loan ->

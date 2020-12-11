@@ -31,6 +31,15 @@ class LoansListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Если юзер не залогинился, переходим на фрагмент логина
+        viewModel.isLoggedIn.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { loggedIn ->
+                if (!loggedIn) {
+                    findNavController().navigate(R.id.action_loansListFragment_to_authGraph)
+                }
+            }
+        })
+
         // Получаем список займов с сервера
         viewModel.getLoansList()
 
